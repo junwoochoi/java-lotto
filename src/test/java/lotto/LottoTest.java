@@ -82,7 +82,7 @@ class LottoTest {
                 Arguments.of(Lotto.of(Lists.newArrayList(1, 21, 2, 5, 11, 44)), winningNumbers, 1),
                 Arguments.of(Lotto.of(Lists.newArrayList(27, 22, 2, 5, 11, 44)), winningNumbers, 0),
                 Arguments.of(Lotto.of(Lists.newArrayList(26, 23, 2, 5, 11, 44)), winningNumbers, 0)
-        )
+        );
 
     }
 }
