@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,5 +31,13 @@ public class Lotto {
         }
 
         return new Lotto(distinctNumbers);
+    }
+
+    public int correctCount(List<Integer> winningNumbers) {
+        final Set<Integer> myNumbers = new HashSet<>(this.numbers);
+        myNumbers.addAll(winningNumbers);
+        final int combinedSize = myNumbers.size();
+
+        return LOTTO_NUMBER_COUNT + (LOTTO_NUMBER_COUNT - combinedSize);
     }
 }
