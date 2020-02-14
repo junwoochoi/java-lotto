@@ -18,13 +18,11 @@ public class Results {
         initYield(inputMoney, results);
     }
 
-    private void initYield(Money inputMoney, List<Result> results) {
-        Money totalEarnMoney = Money.zero();
-        for (Result result : results) {
-            totalEarnMoney = Money.sum(result.getWonMoney(), totalEarnMoney);
+    private void validate(List<Result> results, Money inputMoney) {
+        assert inputMoney != null;
+        if (CollectionUtils.isEmpty(results)) {
+            throw new IllegalArgumentException("results cannot be empty");
         }
-
-        this.yield = Money.calculateYield(totalEarnMoney, inputMoney);
     }
 
     private void initResultsWithParameter(List<Result> results) {
@@ -37,12 +35,13 @@ public class Results {
         }
     }
 
-    private void validate(List<Result> results, Money inputMoney) {
-        assert inputMoney != null;
-        if (CollectionUtils.isEmpty(results)) {
-            throw new IllegalArgumentException("results cannot be empty");
+    private void initYield(Money inputMoney, List<Result> results) {
+        Money totalEarnMoney = Money.zero();
+        for (Result result : results) {
+            totalEarnMoney = Money.sum(result.getWonMoney(), totalEarnMoney);
         }
 
+        this.yield = Money.calculateYield(totalEarnMoney, inputMoney);
     }
 
     public static Results of(List<Result> results, Money inputMoney) {

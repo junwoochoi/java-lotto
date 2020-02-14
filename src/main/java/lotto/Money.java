@@ -2,7 +2,7 @@ package lotto;
 
 public class Money {
     private static final long ZERO = 0;
-    public static final int HUNDRED = 100;
+    public static final long HUNDRED = 100L;
     private long amount;
 
     private Money(long amount) {
@@ -43,6 +43,7 @@ public class Money {
     }
 
     public static int calculateYield(Money totalEarnMoney, Money beforeMoney) {
-        return (int) (totalEarnMoney.amount / beforeMoney.amount * HUNDRED);
+        final double divide = ((double) totalEarnMoney.amount / (double) beforeMoney.amount);
+        return (int) (divide * HUNDRED);
     }
 }
