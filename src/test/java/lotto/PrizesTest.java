@@ -14,6 +14,6 @@ class PrizesTest {
 
         assertThat(prizes).isNotNull();
         assertThat(prizes)
-                .containsOnlyKeys(3, 4, 5, 6)
+                .containsOnlyKeys(3, 4, 5, 6);
     }
 }
