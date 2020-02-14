@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @DisplayName("로또 기계 테스트")
-class LottoMachineTest {
+class LotteryMachineTest {
 
     @Test
     @DisplayName("로또 객체를 반환한다.")
@@ -16,9 +16,9 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         //when
-        Lotto lotto = lottoMachine.createLotto();
+        Lottery lottery = lottoMachine.createLotto();
 
         //then
-        assertThat(lotto).isNotNull();
+        assertThat(lottery).isNotNull();
     }
 }

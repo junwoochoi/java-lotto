@@ -8,7 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("로또 가게 테스트")
-class LottoShopTest {
+class LotteryShopTest {
 
     @Test
     void testBuy() {
@@ -17,7 +17,7 @@ class LottoShopTest {
         final LottoShop lottoShop = new LottoShop();
 
         //when
-        final List<Lotto> buy = lottoShop.buy(money);
+        final List<Lottery> buy = lottoShop.buy(money);
 
         //then
         assertThat(buy).hasSize(2);

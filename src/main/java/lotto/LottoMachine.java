@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.Lotto.*;
+import static lotto.Lottery.*;
 
 public class LottoMachine {
 
@@ -13,10 +13,10 @@ public class LottoMachine {
             .boxed()
             .collect(Collectors.toList());
 
-    public Lotto createLotto() {
+    public Lottery createLotto() {
         Collections.shuffle(numbers);
         final List<Integer> lottoNumbers = numbers.subList(0, LOTTO_NUMBER_COUNT);
 
-        return Lotto.of(lottoNumbers);
+        return Lottery.of(lottoNumbers);
     }
 }
