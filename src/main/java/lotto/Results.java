@@ -2,7 +2,10 @@ package lotto;
 
 import spark.utils.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Results {
     public static final int ZERO = 0;
@@ -12,22 +15,14 @@ public class Results {
     private Results(List<Result> results, Money inputMoney) {
         validate(results, inputMoney);
         initResultsWithParameter(results);
-        initYield(inputMoney);
+        initYield(inputMoney, results);
     }
 
-    private void initYield(Money inputMoney) {
-        final Set<Integer> correctCounts = results.keySet();
-        final Map<Integer, Money> prizes = Prizes.getPrizes();
+    private void initYield(Money inputMoney, List<Result> results) {
         Money totalEarnMoney = Money.zero();
-
-        for (Integer correctCount : correctCounts) {
-            final Integer numberOfPrize = this.results.getOrDefault(correctCount, ZERO);
-            final Money moneyPerPrize = prizes.getOrDefault(correctCount, Money.zero());
-
-            final Money prizeMoney = Money.multiply(moneyPerPrize, numberOfPrize);
-            totalEarnMoney = Money.sum(prizeMoney, totalEarnMoney);
+        for (Result result : results) {
+            totalEarnMoney = Money.sum(result.getWonMoney(), totalEarnMoney);
         }
-
 
         this.yield = Money.calculateYield(totalEarnMoney, inputMoney);
     }

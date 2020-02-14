@@ -46,7 +46,7 @@ public class Lottery {
     }
 
     public Result checkResult(WinningNumbers winningNumbers) {
-        return new Result(correctCount(winningNumbers));
+        return Result.of(correctCount(winningNumbers));
     }
 
     public Set<Integer> getNumbers() {
