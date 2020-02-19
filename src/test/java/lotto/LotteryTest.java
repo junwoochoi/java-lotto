@@ -40,7 +40,7 @@ class LotteryTest {
         assertThatIllegalArgumentException()
                 //when
                 .isThrownBy(() -> Lottery.of(numbers))
-                .withMessage("로또에 중복된 숫자가 들어올 수 없습니다.");
+                .withMessage("로또의 갯수가 잘못되었거나 중복된 숫자가 있습니다.");
     }
 
     @Test
@@ -54,7 +54,7 @@ class LotteryTest {
         assertThatIllegalArgumentException()
                 //when
                 .isThrownBy(() -> Lottery.of(numbers))
-                .withMessage("로또에 중복된 숫자가 들어올 수 없습니다.");
+                .withMessage("로또의 갯수가 잘못되었거나 중복된 숫자가 있습니다.");
     }
 
     @ParameterizedTest
