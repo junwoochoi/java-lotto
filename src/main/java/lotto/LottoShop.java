@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class LottoShop {
     private LottoMachine lottoMachine = new LottoMachine();
 
-    public List<Lottery> buy(Money inputMoney) {
+    public List<Lottery> sell(Money inputMoney) {
         final int lottoCount = inputMoney.availableLottoCount();
 
         return IntStream.range(0, lottoCount)

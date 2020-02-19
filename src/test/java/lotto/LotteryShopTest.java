@@ -17,7 +17,7 @@ class LotteryShopTest {
         final LottoShop lottoShop = new LottoShop();
 
         //when
-        final List<Lottery> buy = lottoShop.buy(money);
+        final List<Lottery> buy = lottoShop.sell(money);
 
         //then
         assertThat(buy).hasSize(2);

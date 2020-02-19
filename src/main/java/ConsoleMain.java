@@ -33,6 +33,6 @@ public class ConsoleMain {
 
     private static List<Lottery> buyLotto(Money inputMoney) {
         LottoShop lottoShop = new LottoShop();
-        return lottoShop.buy(inputMoney);
+        return lottoShop.sell(inputMoney);
     }
 }
