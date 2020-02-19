@@ -34,9 +34,9 @@ public class Money {
         return of(money.amount * number);
     }
 
-    public static Money sum(Money money1, Money money2) {
-        assert money1 != null && money2 != null;
-        return of(money1.amount + money2.amount);
+    public static Money sum(Money x, Money y) {
+        assert x != null && y != null;
+        return of(x.amount + y.amount);
     }
 
     public static int calculateYield(Money totalEarnMoney, Money beforeMoney) {
