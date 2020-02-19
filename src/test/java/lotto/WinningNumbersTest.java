@@ -25,5 +25,11 @@ class WinningNumbersTest {
         assertThrows(IllegalArgumentException.class, () -> WinningNumbers.of(Lists.newArrayList(4, 5, 6)));
     }
 
+    @Test
+    @DisplayName("로또 번호에 중복값이 들어왔을 떄 Exception을 던진다")
+    void testDuplicateNumbers() {
+        assertThrows(IllegalArgumentException.class, () -> WinningNumbers.of(Lists.newArrayList(1, 3, 3, 4, 5, 6)));
+    }
+
 
 }
