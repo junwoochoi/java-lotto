@@ -40,6 +40,7 @@ public class Money {
     }
 
     public static int calculateYield(Money totalEarnMoney, Money beforeMoney) {
+        assert totalEarnMoney != null && beforeMoney != null;
         final double divide = ((double) totalEarnMoney.amount / (double) beforeMoney.amount);
         return (int) (divide * HUNDRED);
     }
