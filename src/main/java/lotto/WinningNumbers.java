@@ -26,6 +26,10 @@ public class WinningNumbers {
         if (numbers.size() != Lottery.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("winning numbers size should be LOTTO_NUMBER_COUNT");
         }
+
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("winning numbers can not have duplicate numbers");
+        }
     }
 
     public List<Integer> getNumbers() {
