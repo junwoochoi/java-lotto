@@ -36,7 +36,7 @@ public class Results {
     }
 
     private void initYield(Money inputMoney, List<Result> results) {
-        Money totalEarnMoney = Money.zero();
+        Money totalEarnMoney = Money.ZERO;
         for (Result result : results) {
             totalEarnMoney = Money.sum(result.getWonMoney(), totalEarnMoney);
         }

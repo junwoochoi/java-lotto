@@ -1,8 +1,9 @@
 package lotto;
 
 public class Money {
-    private static final long ZERO = 0;
+    public static final Money ZERO = Money.of(0);
     public static final long HUNDRED = 100L;
+    public static final int ZERO_AMOUNT = 0;
     private long amount;
 
     private Money(long amount) {
@@ -11,17 +12,13 @@ public class Money {
     }
 
     private void validate(long amount) {
-        if (amount < ZERO) {
+        if (amount < ZERO_AMOUNT) {
             throw new IllegalArgumentException("돈은 0원을 넘어야 합니다.");
         }
     }
 
     public static Money of(long amount) {
         return new Money(amount);
-    }
-
-    public static Money zero() {
-        return new Money(ZERO);
     }
 
     public int availableLottoCount() {

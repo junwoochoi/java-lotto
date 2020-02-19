@@ -12,7 +12,7 @@ public class Result {
         assert correctCount >= 0;
         this.correctCount = correctCount;
         final Map<Integer, Money> prizes = Prizes.getPrizes();
-        this.wonMoney = prizes.getOrDefault(correctCount, Money.zero());
+        this.wonMoney = prizes.getOrDefault(correctCount, Money.ZERO);
     }
 
     public static Result of(int correctCount) {
