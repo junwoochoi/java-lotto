@@ -14,9 +14,6 @@ public class Lottery {
 
     private Set<Integer> numbers;
 
-    private Lottery() {
-    }
-
     private Lottery(Set<Integer> lottoNumbers) {
         validateNumbers(lottoNumbers);
         this.numbers = lottoNumbers;
