@@ -48,10 +48,12 @@ public class ResultView {
         correctCounts.stream()
                 .filter(count -> count > 2)
                 .sorted()
-                .forEach(correctCount -> {
-                    final Money prizeMoney = getPrizeMoney(correctCount);
-                    System.out.println(correctCount + "개 일치 (" + prizeMoney.wonString() + ") - " + countOfPrize.getOrDefault(correctCount, ZERO) + "개");
-                });
+                .forEach(correctCount -> printEach(countOfPrize, correctCount));
+    }
+
+    private void printEach(Map<Integer, Integer> countOfPrize, Integer correctCount) {
+        final Money prizeMoney = getPrizeMoney(correctCount);
+        System.out.println(correctCount + "개 일치 (" + prizeMoney.wonString() + ") - " + countOfPrize.getOrDefault(correctCount, ZERO) + "개");
     }
 
     private void printYield(ResultsDto resultsDto) {
