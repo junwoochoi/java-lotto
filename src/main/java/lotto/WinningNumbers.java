@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WinningNumbers {
 
-    List<Integer> winningNumbers;
+    private List<Integer> winningNumbers;
 
     private WinningNumbers(List<Integer> numbers) {
         validateNumbers(numbers);
