@@ -28,7 +28,8 @@ public class ConsoleMain {
             resultList.add(result);
         }
 
-        return Results.of(resultList, inputMoney);
+
+        return ResultsFactory.create(resultList, inputMoney);
     }
 
     private static List<Lottery> buyLotto(Money inputMoney) {

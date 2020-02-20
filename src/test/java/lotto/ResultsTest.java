@@ -20,7 +20,7 @@ class ResultsTest {
         final Money inputMoney = Money.of(14000);
 
         //when
-        final Results results = Results.of(resultList, inputMoney);
+        final Results results = ResultsFactory.create(resultList, inputMoney);
 
         //then
         assertThat(results).isNotNull();
