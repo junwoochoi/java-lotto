@@ -1,5 +1,7 @@
 package lotto;
 
+import spark.utils.CollectionUtils;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +39,17 @@ public class Lottery {
         if (lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또의 갯수가 잘못되었거나 중복된 숫자가 있습니다.");
         }
+        if (CollectionUtils.isEmpty(lottoNumbers)) {
+            throw new IllegalArgumentException("로또 번호 입력이 비어있거나 없습니다.");
+        }
+        if (lottoNumbers.stream().noneMatch(this::isInValidRange)) {
+            throw new IllegalArgumentException("로또의 숫자 범위가 올바르지 않습니다.");
+        }
+
+    }
+
+    private boolean isInValidRange(Integer number) {
+        return number >= LOTTO_MIN_NUMBER && number <= LOTTO_MAX_NUMBER;
     }
 
     private int correctCount(WinningNumbers winningNumbers) {

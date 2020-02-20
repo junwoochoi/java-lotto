@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -29,6 +30,13 @@ class WinningNumbersTest {
     @DisplayName("로또 번호에 중복값이 들어왔을 떄 Exception을 던진다")
     void testDuplicateNumbers() {
         assertThrows(IllegalArgumentException.class, () -> WinningNumbers.of(Lists.newArrayList(1, 3, 3, 4, 5, 6)));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {50, 0})
+    @DisplayName("로또 번호에 범위가 올바르지 않은 값이 들어왔을 떄 Exception을 던진다")
+    void testExceedRangeNumbers(int number) {
+        assertThrows(IllegalArgumentException.class, () -> WinningNumbers.of(Lists.newArrayList(number, 3, 3, 4, 5, 6)));
     }
 
 

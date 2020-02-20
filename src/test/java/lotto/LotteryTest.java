@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("로또 객체 테스트")
 class LotteryTest {
@@ -68,6 +70,13 @@ class LotteryTest {
         //then
         assertThat(result).isNotNull();
         assertThat(result.getCorrectCount()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {50, 0})
+    @DisplayName("로또 번호에 범위가 올바르지 않은 값이 들어왔을 떄 Exception을 던진다")
+    void testExceedRangeNumbers(int number) {
+        assertThrows(IllegalArgumentException.class, () -> Lottery.of(Lists.newArrayList(number, 3, 3, 4, 5, 6)));
     }
 
     static Stream<Arguments> lottoCheckTestProvider() {
