@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.Map;
-
 public class Result {
 
     private int correctCount;
@@ -11,8 +9,8 @@ public class Result {
     private Result(int correctCount) {
         assert correctCount >= 0;
         this.correctCount = correctCount;
-        final Map<Integer, Money> prizes = Prizes.getPrizes();
-        this.wonMoney = prizes.getOrDefault(correctCount, Money.ZERO);
+        final Prize prize = Prize.ofMatchCount(correctCount);
+        this.wonMoney = prize.getRewardMoney();
     }
 
     public static Result of(int correctCount) {
