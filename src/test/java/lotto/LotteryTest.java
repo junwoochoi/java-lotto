@@ -80,7 +80,7 @@ class LotteryTest {
     }
 
     static Stream<Arguments> lottoCheckTestProvider() {
-        final WinningNumbers winningNumbers = WinningNumbers.of(Lists.newArrayList(1, 3, 6, 7, 12, 45));
+        final WinningNumbers winningNumbers = WinningNumbers.of(Lists.newArrayList(1, 3, 6, 7, 12, 45), 30);
         return Stream.of(
                 Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 45)), winningNumbers, 6),
                 Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 44)), winningNumbers, 5),

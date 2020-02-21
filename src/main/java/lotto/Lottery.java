@@ -57,6 +57,7 @@ public class Lottery {
         myNumbers.addAll(winningNumbers.getNumbers());
         final int combinedSize = myNumbers.size();
 
+
         return LOTTO_NUMBER_COUNT + (LOTTO_NUMBER_COUNT - combinedSize);
     }
 
