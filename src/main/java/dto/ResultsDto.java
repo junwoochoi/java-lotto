@@ -1,13 +1,14 @@
 package dto;
 
+import lotto.Prize;
 import lotto.Results;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class ResultsDto {
 
-    private Map<Integer, Integer> countOfPrize;
+    private Map<Prize, Integer> countOfPrize;
     private int yield;
 
     public ResultsDto(Results results) {
@@ -16,8 +17,8 @@ public class ResultsDto {
         this.countOfPrize = results.getCountOfPrize();
     }
 
-    public Map<Integer, Integer> getCountOfPrize() {
-        return new HashMap<>(countOfPrize);
+    public Map<Prize, Integer> getCountOfPrize() {
+        return new EnumMap<>(countOfPrize);
     }
 
     public int getYield() {

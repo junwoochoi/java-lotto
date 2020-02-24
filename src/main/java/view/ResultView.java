@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class ResultView {
-    private static final Integer ZERO = 0;
-
     public void printLotteries(LotteriesDto lotteriesDto) {
         final List<Set<Integer>> lotteryNumbers = lotteriesDto.getLotteries();
         printLotteriesCount(lotteryNumbers.size());
@@ -31,10 +29,10 @@ public class ResultView {
     public void printLottoResults(ResultsDto resultsDto) {
         printHeader();
 
-        final Map<Integer, Integer> countOfPrize = resultsDto.getCountOfPrize();
-        final Set<Integer> correctCounts = countOfPrize.keySet();
+        final Map<Prize, Integer> countOfPrize = resultsDto.getCountOfPrize();
+        final Set<Prize> prizeSet = countOfPrize.keySet();
 
-        printCountOfPrize(countOfPrize, correctCounts);
+        printCountOfPrize(countOfPrize, prizeSet);
 
         printYield(resultsDto);
     }
@@ -44,30 +42,20 @@ public class ResultView {
         System.out.println("============");
     }
 
-    private void printCountOfPrize(Map<Integer, Integer> countOfPrize, Set<Integer> correctCounts) {
-        correctCounts.stream()
-                .filter(count -> count > 2)
-                .sorted()
-                .forEach(correctCount -> printEach(countOfPrize, correctCount));
+    private void printCountOfPrize(Map<Prize, Integer> countOfPrize, Set<Prize> prizes) {
+        prizes.stream()
+                .filter(prize -> prize != Prize.NONE)
+                .forEach(prize -> printEach(countOfPrize, prize));
     }
 
-    private void printEach(Map<Integer, Integer> countOfPrize, Integer correctCount) {
-        final Money prizeMoney = getPrizeMoney(correctCount);
-        System.out.println(correctCount + "개 일치 (" + prizeMoney.wonString() + ") - " + countOfPrize.getOrDefault(correctCount, ZERO) + "개");
+    private void printEach(Map<Prize, Integer> countOfPrize, Prize prize) {
+        final Money prizeMoney = prize.getRewardMoney();
+        final String bonusString = prize.isBonusMatch() ? "보너스볼 일치" : "";
+        System.out.println(String.format("%s개 일치, %s (%s) - %s개", prize.getMatchCount(), bonusString, prizeMoney.wonString(), countOfPrize.get(prize)));
     }
 
     private void printYield(ResultsDto resultsDto) {
         System.out.println("총 수익률은 " + resultsDto.getYield() + "% 입니다. ");
     }
-
-    private Money getPrizeMoney(Integer correctCount) {
-        final Prize prize = Prize.ofMatchCount(correctCount);
-        final Money prizeMoney = prize.getRewardMoney();
-        if (prizeMoney == null || prize == Prize.NONE) {
-            throw new IllegalArgumentException("상금이 없는 당첨 갯수 입니다.");
-        }
-        return prizeMoney;
-    }
-
 
 }

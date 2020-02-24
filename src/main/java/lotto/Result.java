@@ -2,26 +2,21 @@ package lotto;
 
 public class Result {
 
-    private int correctCount;
-    private Money wonMoney;
+    private Prize prize;
 
 
-    private Result(int correctCount) {
+    private Result(int correctCount, boolean isBonusMatch) {
         assert correctCount >= 0;
-        this.correctCount = correctCount;
-        final Prize prize = Prize.ofMatchCount(correctCount);
-        this.wonMoney = prize.getRewardMoney();
+
+        this.prize = Prize.ofMatchCount(correctCount, isBonusMatch);
     }
 
-    public static Result of(int correctCount) {
-        return new Result(correctCount);
+    public static Result of(int correctCount, boolean isBonusMatch) {
+        return new Result(correctCount, isBonusMatch);
     }
 
-    public int getCorrectCount() {
-        return this.correctCount;
-    }
-
-    public Money getWonMoney() {
-        return wonMoney;
+    public Prize getPrize() {
+        return prize;
     }
 }
+

@@ -16,7 +16,8 @@ public class WinningNumbers {
 
     private WinningNumbers(List<Integer> numbers, Integer bonusNumber) {
         validateParams(numbers, bonusNumber);
-        winningNumbers = new ArrayList<>(numbers);
+        this.bonusNumber = bonusNumber;
+        this.winningNumbers = new ArrayList<>(numbers);
     }
 
     private void validateParams(List<Integer> numbers, Integer bonusNumber) {

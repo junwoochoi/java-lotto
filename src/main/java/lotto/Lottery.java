@@ -32,7 +32,7 @@ public class Lottery {
     }
 
     public Result checkResult(WinningNumbers winningNumbers) {
-        return Result.of(correctCount(winningNumbers));
+        return Result.of(correctCount(winningNumbers), this.numbers.contains(winningNumbers.getBonusNumber()));
     }
 
     private void validateNumbers(Set<Integer> lottoNumbers) {

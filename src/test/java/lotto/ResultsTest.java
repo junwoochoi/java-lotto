@@ -13,9 +13,9 @@ class ResultsTest {
     @Test
     void testCreate() {
         //given
-        final ArrayList<Result> resultList = Lists.newArrayList(Result.of(3));
+        final ArrayList<Result> resultList = Lists.newArrayList(Result.of(3, false));
         for (int i = 0; i < 13; i++) {
-            resultList.add(Result.of(1));
+            resultList.add(Result.of(1, false));
         }
         final Money inputMoney = Money.of(14000);
 

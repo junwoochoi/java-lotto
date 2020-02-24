@@ -1,36 +1,42 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toMap;
+import java.util.Arrays;
 
 public enum Prize {
-    FIRST_PRIZE(6, Money.of(2000000000)),
-    SECOND_PRIZE(5, Money.of(1500000)),
-    THIRD_PRIZE(4, Money.of(50000)),
-    FOURTH_PRIZE(3, Money.of(5000)),
-    NONE(0, Money.ZERO);
+    FIRST_PRIZE(6, false, Money.of(2000000000)),
+    SECOND_PRIZE(5, true, Money.of(3000000)),
+    THIRD_PRIZE(5, false, Money.of(1500000)),
+    FOURTH_PRIZE(4, false, Money.of(50000)),
+    FIFTH_PRIZE(3, false, Money.of(5000)),
+    NONE(0, false, Money.ZERO);
 
-    private static final Map<Integer, Prize> matchCounts =
-            Collections.unmodifiableMap(
-                    Stream.of(values())
-                            .collect(toMap(o -> o.matchCount, Function.identity())));
+
     private int matchCount;
+    private boolean isBonusMatch;
     private Money rewardMoney;
 
-    Prize(int matchCount, Money rewardMoney) {
+    Prize(int matchCount, boolean isBonusMatch, Money rewardMoney) {
         this.matchCount = matchCount;
+        this.isBonusMatch = isBonusMatch;
         this.rewardMoney = rewardMoney;
     }
 
-    public static Prize ofMatchCount(int matchCount) {
-        return matchCounts.getOrDefault(matchCount, NONE);
+    public static Prize ofMatchCount(int matchCount, boolean isBonusMatch) {
+        return Arrays.stream(values())
+                .filter(prize -> prize.matchCount == matchCount && prize.isBonusMatch == isBonusMatch)
+                .findAny()
+                .orElse(NONE);
     }
 
     public Money getRewardMoney() {
         return rewardMoney;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusMatch() {
+        return isBonusMatch;
     }
 }
