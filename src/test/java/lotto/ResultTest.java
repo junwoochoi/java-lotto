@@ -14,7 +14,7 @@ class ResultTest {
         final Result result = Result.of(5, true);
 
         assertThat(result).isNotNull();
-        assertThat(result.getWonMoney()).isEqualTo(Prize.ofMatchCount(5, true).getRewardMoney());
+        assertThat(result.getPrize().getRewardMoney()).isEqualTo(Prize.ofMatchCount(5, true).getRewardMoney());
     }
 
 }
