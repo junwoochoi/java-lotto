@@ -21,7 +21,7 @@ public enum Prize {
         this.rewardMoney = rewardMoney;
     }
 
-    public static Prize ofMatchCount(int matchCount, boolean isBonusMatch) {
+    public static Prize ofMatch(int matchCount, boolean isBonusMatch) {
         return Arrays.stream(values())
                 .filter(prize -> prize.matchCount == matchCount && prize.isBonusMatch == isBonusMatch)
                 .findAny()

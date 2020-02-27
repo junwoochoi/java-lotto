@@ -15,7 +15,7 @@ class PrizeTest {
     void testCreate(int matchCount, boolean isBonusMatch, Prize expected) {
 
         //when
-        final Prize prize = Prize.ofMatchCount(matchCount, isBonusMatch);
+        final Prize prize = Prize.ofMatch(matchCount, isBonusMatch);
 
         //then
         assertThat(prize).isEqualTo(expected);

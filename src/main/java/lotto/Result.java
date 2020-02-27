@@ -8,7 +8,7 @@ public class Result {
     private Result(int correctCount, boolean isBonusMatch) {
         assert correctCount >= 0;
 
-        this.prize = Prize.ofMatchCount(correctCount, isBonusMatch);
+        this.prize = Prize.ofMatch(correctCount, isBonusMatch);
     }
 
     public static Result of(int correctCount, boolean isBonusMatch) {
