@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class ResultsFactory {
 
     private static Map<Prize, Integer> buildResultMap(List<Result> results) {
         final ArrayList<Result> parameterResults = new ArrayList<>(results);
-        final Map<Prize, Integer> resultMap = new HashMap<>();
+        final Map<Prize, Integer> resultMap = new EnumMap<>(Prize.class);
 
         for (Result parameterResult : parameterResults) {
             final Prize prize = parameterResult.getPrize();

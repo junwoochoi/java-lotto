@@ -30,9 +30,9 @@ public class ResultView {
         printHeader();
 
         final Map<Prize, Integer> countOfPrize = resultsDto.getCountOfPrize();
-        final Set<Prize> prizeSet = countOfPrize.keySet();
+        final Set<Prize> prizes = countOfPrize.keySet();
 
-        printCountOfPrize(countOfPrize, prizeSet);
+        printCountOfPrize(countOfPrize, prizes);
 
         printYield(resultsDto);
     }
@@ -45,13 +45,13 @@ public class ResultView {
     private void printCountOfPrize(Map<Prize, Integer> countOfPrize, Set<Prize> prizes) {
         prizes.stream()
                 .filter(prize -> prize != Prize.NONE)
-                .forEach(prize -> printEach(countOfPrize, prize));
+                .forEach(prize -> printEach(countOfPrize.get(prize), prize));
     }
 
-    private void printEach(Map<Prize, Integer> countOfPrize, Prize prize) {
+    private void printEach(Integer countOfPrize, Prize prize) {
         final Money prizeMoney = prize.getRewardMoney();
         final String bonusString = prize.isBonusMatch() ? "보너스볼 일치" : "";
-        System.out.println(String.format("%s개 일치, %s (%s) - %s개", prize.getMatchCount(), bonusString, prizeMoney.wonString(), countOfPrize.get(prize)));
+        System.out.println(String.format("%s개 일치, %s (%s) - %s개", prize.getMatchCount(), bonusString, prizeMoney.wonString(), countOfPrize));
     }
 
     private void printYield(ResultsDto resultsDto) {
