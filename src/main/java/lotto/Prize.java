@@ -23,9 +23,17 @@ public enum Prize {
 
     public static Prize ofMatch(int matchCount, boolean isBonusMatch) {
         return Arrays.stream(values())
-                .filter(prize -> prize.matchCount == matchCount && prize.isBonusMatch == isBonusMatch)
+                .filter(prize -> isMatch(matchCount, isBonusMatch, prize))
                 .findAny()
                 .orElse(NONE);
+    }
+
+    private static boolean isMatch(int matchCount, boolean isBonusMatch, Prize prize) {
+        boolean isBonusMatter = (matchCount == SECOND_PRIZE.matchCount);
+        if (isBonusMatter) {
+            return prize.matchCount == matchCount && prize.isBonusMatch == isBonusMatch;
+        }
+        return prize.matchCount == matchCount;
     }
 
     public Money getRewardMoney() {
