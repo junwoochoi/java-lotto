@@ -62,14 +62,14 @@ class LotteryTest {
     @ParameterizedTest
     @MethodSource("lottoCheckTestProvider")
     @DisplayName("로또 당첨 확인")
-    void checkIfWin(Lottery lottery, WinningNumbers winningNumbers, int expected) {
+    void checkIfWin(Lottery lottery, WinningNumbers winningNumbers, Money expected) {
 
         //when
         final Result result = lottery.checkResult(winningNumbers);
 
         //then
         assertThat(result).isNotNull();
-        assertThat(result.getCorrectCount()).isEqualTo(expected);
+        assertThat(result.getPrize().getRewardMoney()).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -80,16 +80,17 @@ class LotteryTest {
     }
 
     static Stream<Arguments> lottoCheckTestProvider() {
-        final WinningNumbers winningNumbers = WinningNumbers.of(Lists.newArrayList(1, 3, 6, 7, 12, 45));
+        final WinningNumbers winningNumbers = WinningNumbers.of(Lists.newArrayList(1, 3, 6, 7, 12, 45), 30);
         return Stream.of(
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 45)), winningNumbers, 6),
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 44)), winningNumbers, 5),
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 11, 44)), winningNumbers, 4),
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 5, 11, 44)), winningNumbers, 3),
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 2, 5, 11, 44)), winningNumbers, 2),
-                Arguments.of(Lottery.of(Lists.newArrayList(1, 21, 2, 5, 11, 44)), winningNumbers, 1),
-                Arguments.of(Lottery.of(Lists.newArrayList(27, 22, 2, 5, 11, 44)), winningNumbers, 0),
-                Arguments.of(Lottery.of(Lists.newArrayList(26, 23, 2, 5, 11, 44)), winningNumbers, 0)
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 45)), winningNumbers, Prize.FIRST_PRIZE.getRewardMoney()),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 30)), winningNumbers, Prize.SECOND_PRIZE.getRewardMoney()),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 12, 44)), winningNumbers, Prize.THIRD_PRIZE.getRewardMoney()),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 7, 11, 44)), winningNumbers, Prize.FOURTH_PRIZE.getRewardMoney()),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 6, 5, 11, 44)), winningNumbers, Prize.FIFTH_PRIZE.getRewardMoney()),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 3, 2, 5, 11, 44)), winningNumbers, Money.ZERO),
+                Arguments.of(Lottery.of(Lists.newArrayList(1, 21, 2, 5, 11, 44)), winningNumbers, Money.ZERO),
+                Arguments.of(Lottery.of(Lists.newArrayList(27, 22, 2, 5, 11, 44)), winningNumbers, Money.ZERO),
+                Arguments.of(Lottery.of(Lists.newArrayList(26, 23, 2, 5, 11, 44)), winningNumbers, Money.ZERO)
         );
 
     }
