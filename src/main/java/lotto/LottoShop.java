@@ -1,17 +1,31 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoShop {
-    private LottoMachine lottoMachine = new LottoMachine();
+    private LottoShop() {
 
-    public List<Lottery> sell(Money inputMoney) {
-        final int lottoCount = inputMoney.availableLottoCount();
-
-        return IntStream.range(0, lottoCount)
-                .mapToObj(value -> lottoMachine.createLotto())
-                .collect(Collectors.toList());
     }
+
+    public static List<Lottery> sell(Money inputMoney, List<List<Integer>> manualLottoInputs) {
+        assert inputMoney != null && manualLottoInputs != null;
+        final LottoMachine lottoMachine = new LottoMachine();
+        final List<Lottery> lotteries = new ArrayList<>();
+        int lottoCount = inputMoney.availableLottoCount();
+
+        for (List<Integer> inputs : manualLottoInputs) {
+            final Lottery lotto = lottoMachine.createLotto(new ManualLottoGenerator(inputs));
+            lotteries.add(lotto);
+            lottoCount--;
+        }
+
+        final RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
+        for (int i = lottoCount; i > 0; i--) {
+            final Lottery lotto = lottoMachine.createLotto(randomLottoGenerator);
+            lotteries.add(lotto);
+        }
+        return lotteries;
+    }
+
 }

@@ -1,13 +1,12 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 
 public class Lottery {
-
 
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final long LOTTO_PRICE = 1000;
@@ -22,13 +21,13 @@ public class Lottery {
     }
 
     public static Lottery of(List<Integer> lottoNumbers) {
-        final HashSet<Integer> distinctNumbers = new HashSet<>(lottoNumbers);
+        final Set<Integer> distinctNumbers = new TreeSet<>(lottoNumbers);
 
         return new Lottery(distinctNumbers);
     }
 
     public Set<LottoNo> getNumbers() {
-        return new HashSet<>(numbers);
+        return new TreeSet<>(numbers);
     }
 
     public Result checkResult(WinningNumbers winningNumbers) {
@@ -44,7 +43,7 @@ public class Lottery {
 
 
     private int correctCount(WinningNumbers winningNumbers) {
-        final Set<LottoNo> myNumbers = new HashSet<>(this.numbers);
+        final Set<LottoNo> myNumbers = new TreeSet<>(this.numbers);
         myNumbers.addAll(winningNumbers.getNumbers());
         final int combinedSize = myNumbers.size();
 

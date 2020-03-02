@@ -12,8 +12,9 @@ public class ConsoleMain {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
         final Money inputMoney = inputView.inputMoney();
+        final List<List<Integer>> manualNumbers = inputView.inputManualLottos();
 
-        List<Lottery> lotteries = buyLotto(inputMoney);
+        List<Lottery> lotteries = buyLotto(inputMoney, manualNumbers);
         resultView.printLotteries(new LotteriesDto(lotteries));
         final WinningNumbers winningNumbers = inputView.inputWinningNumbers();
 
@@ -32,8 +33,9 @@ public class ConsoleMain {
         return ResultsFactory.create(resultList, inputMoney);
     }
 
-    private static List<Lottery> buyLotto(Money inputMoney) {
-        LottoShop lottoShop = new LottoShop();
-        return lottoShop.sell(inputMoney);
+    private static List<Lottery> buyLotto(Money inputMoney, List<List<Integer>> manualLottoInputs) {
+
+
+        return LottoShop.sell(inputMoney, manualLottoInputs);
     }
 }
