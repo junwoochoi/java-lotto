@@ -5,19 +5,22 @@ import spark.utils.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-import static lotto.Lottery.LOTTO_MAX_NUMBER;
-import static lotto.Lottery.LOTTO_MIN_NUMBER;
+import static lotto.LottoNo.LOTTO_MAX_NUMBER;
+import static lotto.LottoNo.LOTTO_MIN_NUMBER;
 
 public class WinningNumbers {
 
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
+    private List<LottoNo> winningNumbers;
+    private LottoNo bonusNumber;
 
     private WinningNumbers(List<Integer> numbers, Integer bonusNumber) {
         validateParams(numbers, bonusNumber);
-        this.bonusNumber = bonusNumber;
-        this.winningNumbers = new ArrayList<>(numbers);
+        this.bonusNumber = LottoNo.of(bonusNumber);
+        this.winningNumbers = numbers.stream()
+                .map(LottoNo::of)
+                .collect(Collectors.toList());
     }
 
     private void validateParams(List<Integer> numbers, Integer bonusNumber) {
@@ -65,11 +68,11 @@ public class WinningNumbers {
         return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
     }
 
-    public List<Integer> getNumbers() {
+    public List<LottoNo> getNumbers() {
         return new ArrayList<>(winningNumbers);
     }
 
-    public Integer getBonusNumber() {
+    public LottoNo getBonusNumber() {
         return bonusNumber;
     }
 

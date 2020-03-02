@@ -1,6 +1,7 @@
 package dto;
 
 import lotto.Lottery;
+import lotto.LottoNo;
 import spark.utils.CollectionUtils;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LotteriesDto {
-    private List<Set<Integer>> lotteries;
+    private List<Set<LottoNo>> lotteries;
 
     public LotteriesDto(List<Lottery> lotteries) {
         if (CollectionUtils.isEmpty(lotteries)) {
@@ -21,7 +22,7 @@ public class LotteriesDto {
                 .collect(Collectors.toList());
     }
 
-    public List<Set<Integer>> getLotteries() {
+    public List<Set<LottoNo>> getLotteries() {
         return new ArrayList<>(lotteries);
     }
 

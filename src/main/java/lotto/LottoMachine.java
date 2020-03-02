@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.Lottery.*;
+import static lotto.Lottery.LOTTO_NUMBER_COUNT;
+import static lotto.LottoNo.LOTTO_MAX_NUMBER;
+import static lotto.LottoNo.LOTTO_MIN_NUMBER;
 
 public class LottoMachine {
 
