@@ -22,8 +22,6 @@ public class ConsoleMain {
     }
 
     private static List<Lottery> buyLotto(Money inputMoney, List<List<Integer>> manualLottoInputs) {
-
-
         return LottoShop.sell(inputMoney, manualLottoInputs);
     }
 }
