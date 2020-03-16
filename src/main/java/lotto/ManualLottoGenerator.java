@@ -3,11 +3,9 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class ManualLottoGenerator implements LottoGenerator {
 
-    private final Scanner scanner = new Scanner(System.in);
     private List<Integer> inputNumbers;
 
     public ManualLottoGenerator(List<Integer> inputNumbers) {
