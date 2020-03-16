@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -27,7 +28,7 @@ public class Lottery {
     }
 
     public Set<LottoNo> getNumbers() {
-        return new TreeSet<>(numbers);
+        return Collections.unmodifiableNavigableSet(new TreeSet<>(numbers));
     }
 
     public Result checkResult(WinningNumbers winningNumbers) {
