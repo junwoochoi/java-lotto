@@ -9,11 +9,11 @@ public class ManualLottoGenerator implements LottoGenerator {
     private List<Integer> inputNumbers;
 
     public ManualLottoGenerator(List<Integer> inputNumbers) {
-        validateNumbes(inputNumbers);
+        validateNumbers(inputNumbers);
         this.inputNumbers = Collections.unmodifiableList(inputNumbers);
     }
 
-    private void validateNumbes(List<Integer> inputNumbers) {
+    private void validateNumbers(List<Integer> inputNumbers) {
         if (Objects.isNull(inputNumbers)) {
             throw new IllegalArgumentException("input numbers cannot be null");
         }
