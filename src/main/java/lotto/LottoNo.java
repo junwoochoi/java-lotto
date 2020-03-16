@@ -18,12 +18,12 @@ public class LottoNo implements Comparable<LottoNo> {
 
 
     private void validate(int number) {
-        if (!isValid(number)) {
+        if (!isValidRange(number)) {
             throw new IllegalArgumentException("로또의 숫자 범위가 올바르지 않습니다.");
         }
     }
 
-    private boolean isValid(int number) {
+    private boolean isValidRange(int number) {
         return number >= LOTTO_MIN_NUMBER && number <= LOTTO_MAX_NUMBER;
     }
 
