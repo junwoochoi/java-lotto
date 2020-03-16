@@ -5,10 +5,15 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.toList;
 import static lotto.Results.ZERO;
 
 public class ResultsFactory {
-    public static Results create(List<Result> results, Money money) {
+    public static Results create(List<Lottery> lotteries, WinningNumbers winningNumbers, Money money) {
+        final List<Result> results = lotteries.stream()
+                .map(lottery -> lottery.checkResult(winningNumbers))
+                .collect(toList());
+
         return Results.of(buildResultMap(results), calculateYield(money, results), money);
     }
 
@@ -31,7 +36,7 @@ public class ResultsFactory {
             final Integer beforeCount = resultMap.getOrDefault(prize, ZERO);
             resultMap.put(prize, beforeCount + 1);
         }
-        
+
         return resultMap;
     }
 }
