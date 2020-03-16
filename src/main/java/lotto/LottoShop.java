@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoShop {
     private LottoShop() {
@@ -9,7 +10,9 @@ public class LottoShop {
     }
 
     public static List<Lottery> sell(Money inputMoney, List<List<Integer>> manualLottoInputs) {
-        assert inputMoney != null && manualLottoInputs != null;
+        //Spring 쓸때는 Assert.notNull() 사용 가능
+        Objects.requireNonNull(inputMoney);
+        Objects.requireNonNull(manualLottoInputs);
         final LottoMachine lottoMachine = new LottoMachine();
         final List<Lottery> lotteries = new ArrayList<>();
         int lottoCount = inputMoney.availableLottoCount();
