@@ -35,6 +35,7 @@ public class InputView {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
             final List<Integer> inputNumbers = Arrays.stream(getNextLine().split(COMMA))
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(toList());
             lottoNumbers.add(inputNumbers);
