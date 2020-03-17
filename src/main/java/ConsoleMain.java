@@ -11,7 +11,7 @@ public class ConsoleMain {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
         final Money inputMoney = inputView.inputMoney();
-        final List<List<Integer>> manualNumbers = inputView.inputManualLottos();
+        final List<List<Integer>> manualNumbers = inputView.inputManualLotteries();
 
         List<Lottery> lotteries = buyLotto(inputMoney, manualNumbers);
         resultView.printLotteries(new LotteriesDto(lotteries));
