@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static lotto.LottoNo.LOTTO_MAX_NUMBER;
-import static lotto.LottoNo.LOTTO_MIN_NUMBER;
-
 public class WinningNumbers {
 
     private List<LottoNo> winningNumbers;
@@ -44,9 +41,6 @@ public class WinningNumbers {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("winning numbers can not have duplicate numbers");
         }
-        if (numbers.stream().anyMatch(this::isExceedRange)) {
-            throw new IllegalArgumentException("로또의 숫자 범위가 올바르지 않습니다.");
-        }
     }
 
     private void validateBonusNumber(Integer bonusNumber, List<Integer> winningNumbers) {
@@ -54,18 +48,9 @@ public class WinningNumbers {
             throw new IllegalArgumentException("bonus number can not be null or empty");
         }
 
-        if (isExceedRange(bonusNumber)) {
-            throw new IllegalArgumentException("bonus number exceed number range");
-        }
-
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 숫자가 이미 당첨 숫자에 포함되어 있습니다.");
+            throw new IllegalArgumentException("bonus number is already in");
         }
-    }
-
-
-    private boolean isExceedRange(Integer number) {
-        return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
     }
 
     public List<LottoNo> getNumbers() {
