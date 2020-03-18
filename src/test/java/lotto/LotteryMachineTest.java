@@ -16,7 +16,7 @@ class LotteryMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         //when
-        Lottery lottery = lottoMachine.createLotto();
+        Lottery lottery = lottoMachine.createLotto(new RandomLottoGenerator());
 
         //then
         assertThat(lottery).isNotNull();

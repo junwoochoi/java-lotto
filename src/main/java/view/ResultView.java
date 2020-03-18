@@ -2,6 +2,7 @@ package view;
 
 import dto.LotteriesDto;
 import dto.ResultsDto;
+import lotto.LottoNo;
 import lotto.Money;
 import lotto.Prize;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 
 public class ResultView {
     public void printLotteries(LotteriesDto lotteriesDto) {
-        final List<Set<Integer>> lotteryNumbers = lotteriesDto.getLotteries();
+        final List<Set<LottoNo>> lotteryNumbers = lotteriesDto.getLotteries();
         printLotteriesCount(lotteryNumbers.size());
         printAllLotteriesNumber(lotteryNumbers);
     }
@@ -20,8 +21,8 @@ public class ResultView {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    private void printAllLotteriesNumber(List<Set<Integer>> lotteryNumbers) {
-        for (Set<Integer> lotteryNumber : lotteryNumbers) {
+    private void printAllLotteriesNumber(List<Set<LottoNo>> lotteryNumbers) {
+        for (Set<LottoNo> lotteryNumber : lotteryNumbers) {
             System.out.println(lotteryNumber);
         }
     }
