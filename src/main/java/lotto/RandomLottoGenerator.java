@@ -22,4 +22,7 @@ public class RandomLottoGenerator implements LottoGenerator {
 
         return Lottery.of(lottoNumbers);
     }
+
+
+
 }

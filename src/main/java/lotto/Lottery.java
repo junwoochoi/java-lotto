@@ -6,15 +6,17 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import static view.InputView.COMMA;
+
 
 public class Lottery {
 
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final long LOTTO_PRICE = 1000;
 
-    private Set<LottoNo> numbers;
+    protected Set<LottoNo> numbers;
 
-    private Lottery(Set<Integer> lottoNumbers) {
+    protected Lottery(Set<Integer> lottoNumbers) {
         validateNumbers(lottoNumbers);
         this.numbers = lottoNumbers.stream()
                 .map(LottoNo::of)
@@ -36,6 +38,9 @@ public class Lottery {
     }
 
     private void validateNumbers(Set<Integer> lottoNumbers) {
+        if (lottoNumbers == null) {
+            throw new IllegalArgumentException("입력값이 NULL입니다.");
+        }
         if (lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또의 갯수가 잘못되었거나 중복된 숫자가 있습니다.");
         }
@@ -52,4 +57,12 @@ public class Lottery {
         return LOTTO_NUMBER_COUNT + (LOTTO_NUMBER_COUNT - combinedSize);
     }
 
+    @Override
+    public String toString() {
+        return "["
+                + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(COMMA))
+                + "]";
+    }
 }

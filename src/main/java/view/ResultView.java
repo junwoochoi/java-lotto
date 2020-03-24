@@ -31,9 +31,8 @@ public class ResultView {
         printHeader();
 
         final Map<Prize, Integer> countOfPrize = resultsDto.getCountOfPrize();
-        final Set<Prize> prizes = countOfPrize.keySet();
 
-        printCountOfPrize(countOfPrize, prizes);
+        printCountOfPrize(countOfPrize);
 
         printYield(resultsDto);
     }
@@ -43,8 +42,8 @@ public class ResultView {
         System.out.println("============");
     }
 
-    private void printCountOfPrize(Map<Prize, Integer> countOfPrize, Set<Prize> prizes) {
-        prizes.stream()
+    private void printCountOfPrize(Map<Prize, Integer> countOfPrize) {
+        countOfPrize.keySet().stream()
                 .filter(prize -> prize != Prize.NONE)
                 .forEach(prize -> printEach(countOfPrize.get(prize), prize));
     }
